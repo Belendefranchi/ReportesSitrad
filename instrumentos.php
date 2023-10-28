@@ -15,7 +15,7 @@
     {
         function __construct()
         {
-            $this->open('bases/datos89.db');
+            $this->open('basesOrigen/datos89.db');
         }
     }
     echo '<a href="./index.php"><button>Volver</button></a>';
@@ -26,8 +26,8 @@
     echo '<td class="primera_fila">Modelo</td>';
     echo '<td class="primera_fila">Descripción</td>';
     echo '<td class="primera_fila">Fecha y hora</td>';
-    echo '<td class="primera_fila">Alarma 1</td>';
-    echo '<td class="primera_fila">Alarma 2</td>';
+    echo '<td class="primera_fila">Alarma 1 High</td>';
+    echo '<td class="primera_fila">Alarma 1 Low</td>';
     echo '</tr>';
 
     $db = new DataBase();
@@ -39,8 +39,8 @@
         echo "<td>" . $data["modelo"] . "</td>";
         echo "<td>" . $data["descricao"] . "</td>";
         echo "<td>" . date('d/m/Y H:i:s', ($data["datacad"]-25569) * 86400) . "</td>";
+        echo "<td>" . $data["alarme1H"] . "</td>";
         echo "<td>" . $data["alarme1L"] . "</td>";
-        echo "<td>" . $data["alarme2H"] . "</td>";
         echo "</tr>";
     };
     $db->close();

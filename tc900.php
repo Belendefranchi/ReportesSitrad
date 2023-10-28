@@ -15,7 +15,7 @@
     {
         function __construct()
         {
-            $this->open('bases/datos89.db');
+            $this->open('basesOrigen/datos89.db');
         }
     }
     echo '<a href="./index.php"><button>Volver</button></a>';
@@ -29,15 +29,15 @@
     echo '</tr>';
 
     $db = new DataBase();
-    $query="SELECT * FROM tc900log";
+    $query="SELECT * FROM tc900log ORDER BY data DESC";
     $result = $db->query($query);
-    while ($data=$result->fetchArray()){
-        echo "<tr>";
-        echo "<td>" . $data["id"] . "</td>";
-        echo "<td>" . $data["Temp1"]/10 . "</td>";
-        echo "<td>" . $data["Temp2"]/10 . "</td>";
-        echo "<td>" . date('d/m/Y H:i:s', ($data["data"]-25569) * 86400) . "</td>";
-        echo "</tr>";
+    while ($row=$result->fetchArray()){
+      echo "<tr>";
+      echo "<td>" . $row["id"] . "</td>";
+      echo "<td>" . $row["Temp1"]/10 . "</td>";
+      echo "<td>" . $row["Temp2"]/10 . "</td>";
+      echo "<td>" . date('d/m/Y H:i:s', ($row["data"]-25569) * 86400) . "</td>";
+      echo "</tr>";
     };
     $db->close();
     echo "</table>";
