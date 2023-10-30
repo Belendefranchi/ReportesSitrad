@@ -31,7 +31,8 @@
     echo '</tr>';
 
     $db = new DataBase();
-    $query="SELECT * FROM instrumentos";
+        echo "<td>" . $data["modelo"] . "</td>";
+    $query="SELECT id, modelo, descricao, datacad, alarme1H, alarme1L FROM instrumentos";
     $result = $db->query($query);
     while ($data=$result->fetchArray()){
         echo "<tr>";

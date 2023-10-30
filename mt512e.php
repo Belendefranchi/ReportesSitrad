@@ -44,7 +44,7 @@
     $dbDestino->exec($createTableQuery);
 
     // Realizar la consulta en la base de datos de origen
-    $query="SELECT * FROM mt512elog ORDER BY data DESC";
+    $query="SELECT id, Temperatura, data FROM mt512elog ORDER BY data DESC";
     $result = $dbOrigen->query($query);
     $result2 = $dbDestino->query($query);
 

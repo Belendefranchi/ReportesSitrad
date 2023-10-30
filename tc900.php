@@ -29,7 +29,7 @@
     echo '</tr>';
 
     $db = new DataBase();
-    $query="SELECT * FROM tc900log ORDER BY data DESC";
+    $query="SELECT id, Temp1, Temp2, data FROM tc900log ORDER BY data DESC";
     $result = $db->query($query);
     while ($row=$result->fetchArray()){
       echo "<tr>";
