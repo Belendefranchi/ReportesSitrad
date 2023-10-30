@@ -11,9 +11,8 @@
 
 <body>
   <?php
-    // Aumenta el límite de tiempo de ejecución a 300 segundos (5 minutos)
+		date_default_timezone_set('America/Argentina/Buenos_Aires');
     set_time_limit(300);
-    //Establece la precisión para números decimales sin redondeo
     ini_set('precision', 15);
 
     echo '<a href="./index.php"><button>Volver</button></a>';
@@ -23,13 +22,14 @@
     echo '<td class="primera_fila">Id</td>';
     echo '<td class="primera_fila">Temperatura</td>';
     echo '<td class="primera_fila">Fecha y hora</td>';
+    echo '<td class="primera_fila">Fecha y hora</td>';
     echo '</tr>';
 
     // Conexión a la base de datos de origen
-    $dbOrigen = new SQLite3('basesOrigen/Datos89.db');
+    $dbOrigen = new SQLite3('basesOrigen/datos89.db');
 
     // Conexión a la base de datos de destino
-    $dbDestino = new SQLite3('basesDestino/Datos89.db');
+    $dbDestino = new SQLite3('basesDestino/datos89.db');
 
     // Sentencia SQL para crear la tabla en la base de datos de destino si no existe
     $createTableQuery = "
@@ -46,7 +46,7 @@
     // Realizar la consulta en la base de datos de origen
     $query="SELECT id, Temperatura, data FROM mt512elog ORDER BY data DESC";
     $result = $dbOrigen->query($query);
-    $result2 = $dbDestino->query($query);
+    //$result2 = $dbDestino->query($query);
 
 
     // Recorrer los resultados y copiarlos a la base de datos de destino
@@ -64,7 +64,7 @@
       echo "<td>" . $row["id"] . "</td>";
       echo "<td>" . $row["Temperatura"]/10 . "</td>";
       echo "<td>" . $row["data"] . "</td>";
-      //echo "<td>" . date('d/m/Y H:i:s', ($row["data"]-25569) * 86400) . "</td>";
+      echo "<td>" . date('d/m/Y H:i:s', ($row["data"]-25569) * 86400) . "</td>";
       echo "</tr>";
     };
     $dbOrigen->close();
