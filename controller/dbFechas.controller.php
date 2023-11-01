@@ -60,14 +60,16 @@ if (!empty($files)) {
 			$mt512eDataFinal = null;
 
 			$query = "SELECT data FROM mt512elog ORDER BY data LIMIT 1";
-			$result = $dbOrigen->query($query);
+			$stmt = $dbOrigen->prepare($query);
+			$result = $stmt->execute();
 			while ($row = $result->fetchArray()) {
 				$mt512eDataInicial = $row["data"];
 				echo "<p>Primero mt512elog: " . $row["data"] . "</p>";
 			};
 
 			$query = "SELECT data FROM mt512elog ORDER BY data DESC LIMIT 1";
-			$result = $dbOrigen->query($query);
+			$stmt = $dbOrigen->prepare($query);
+			$result = $stmt->execute();
 			while ($row = $result->fetchArray()) {
 				$mt512eDataFinal = $row["data"];
 				echo "<p>Último mt512elog: " . $row["data"] . "</p>";
@@ -81,14 +83,16 @@ if (!empty($files)) {
 			$tc900DataFinal = null;
 
 			$query = "SELECT data FROM tc900log ORDER BY data LIMIT 1";
-			$result = $dbOrigen->query($query);
+			$stmt = $dbOrigen->prepare($query);
+			$result = $stmt->execute();
 			while ($row = $result->fetchArray()) {
 				$tc900DataInicial = $row["data"];
 				echo "<p>Primero tc900log: " . $row["data"] . "</p>";
 			};
 
 			$query = "SELECT data FROM tc900log ORDER BY data DESC LIMIT 1";
-			$result = $dbOrigen->query($query);
+			$stmt = $dbOrigen->prepare($query);
+			$result = $stmt->execute();
 			while ($row = $result->fetchArray()) {
 				$tc900DataFinal = $row["data"];
 				echo "<p>Último tc900log: " . $row["data"] . "</p>";
