@@ -12,14 +12,23 @@
 
 <body>
 	<?php
-		require ("./controller/dbFechas.controller.php")
+		require ("./controllers/dbFechas.controller.php");
 	?>
 
 	<h1>Reportes SITRAD</h1>
 	<div>
-		<a href="./instrumentos.php"><button>Instrumentos</button></a>
-		<a href="./mt512e.php"><button>mt512e</button></a>
-		<a href="./tc900.php"><button>tc900</button></a>
+		<form method="POST" action="router.php">
+        <input type="hidden" name="controller" value="instrumentos">
+        <input type="submit" value="Instrumentos">
+    </form>
+		<form method="POST" action="router.php">
+        <input type="hidden" name="controller" value="mt512e">
+        <input type="submit" value="mt512e">
+    </form>
+		<form method="POST" action="router.php">
+        <input type="hidden" name="controller" value="tc900">
+        <input type="submit" value="tc900">
+    </form>
 	</div>
 	<div>
 		<a href="./panel.php"><button>Panel</button></a>

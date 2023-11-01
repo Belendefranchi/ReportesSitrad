@@ -1,0 +1,5 @@
+USUARIOS => sistema de LOGIN
+
+  USER: consulta de reportes, solo podrá ver los reportes de sensores habilitados. Cuando realice la consulta requerida, se deberán modificar los valores que presenten desvíos, según el rango de fechas y temperaturas indicado por el uuario administrador.
+
+  ADMIN: podrá ver los reportes originales y los que ya hayan sido modificados por el user, pero no podrá modificar valores. Deberá configurar el sistema para indicar sensores habilitados, rangos de fechas a modificar, rango de temperaturas con desvío y rango de temperaturas correctas.
