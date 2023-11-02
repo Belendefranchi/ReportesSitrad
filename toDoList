@@ -3,3 +3,26 @@ USUARIOS => sistema de LOGIN
   USER: consulta de reportes, solo podrá ver los reportes de sensores habilitados. Cuando realice la consulta requerida, se deberán modificar los valores que presenten desvíos, según el rango de fechas y temperaturas indicado por el uuario administrador.
 
   ADMIN: podrá ver los reportes originales y los que ya hayan sido modificados por el user, pero no podrá modificar valores. Deberá configurar el sistema para indicar sensores habilitados, rangos de fechas a modificar, rango de temperaturas con desvío y rango de temperaturas correctas.
+
+PANEL DE CONTROL => para usuario ADMIN
+
+
+
+TABLAS => otras a parte de las datosXX.db
+
+  dbFechas:
+    - alcance: relacionar los nombres de los archivos con los rangos de temperatura de los dos tipos de sensores.
+    - objetivo: permitir la seleccion de los reportes segun el rango de fechas epecificado.
+    - método: comparar archivos de bases en carpeta origen con archivos insertados en la tabla con SELECT COUNT.
+
+    dbSensores:
+    - alcance: relacionar el id de cada sensor con su nombre, modelo, tabla de datos, y el checkbox para habilitarlo o deshabilitarlo.
+    - objetivo: relacionar cada sensor con la tabla de datos corespondiente en las bases originales.
+    - método: solamente se harán consultas de UPDATE para modificar el campo check con true o false, para habilitar o deshabilitar cada sensor.
+
+    dbUsers:
+    - alcance: relacionar los perfiles de los usuarios con los modulos correspondientes.
+    - objetivo: definir los permisos de acceso a los modulos de cada usuario.
+    - método:
+
+    
