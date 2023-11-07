@@ -15,7 +15,7 @@
     {
         function __construct()
         {
-            $this->open('basesOrigen/datos89.db');
+            $this->open('./basesOrigen/datos89.db');
         }
     }
     echo '<a href="./index.php"><button>Volver</button></a>';
@@ -30,7 +30,8 @@
     echo '<td class="primera_fila">Alarma 1 Low</td>';
     echo '</tr>';
 
-    $db = new DataBase();
+    //$db = new DataBase();
+    $db = new SQLite3('./basesOrigen/datos89.db');
     $query="SELECT id, modelo, descricao, datacad, alarme1H, alarme1L FROM instrumentos";
     $result = $db->query($query);
     while ($data=$result->fetchArray()){

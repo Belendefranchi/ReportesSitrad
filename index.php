@@ -21,18 +21,16 @@
         <input type="hidden" name="controller" value="instrumentos">
         <input type="submit" value="Instrumentos">
     </form>
-		<form method="POST" action="router.php">
+		<form method="POST" action="router.php?sensor=mt512e">
         <input type="hidden" name="controller" value="mt512e">
         <input type="submit" value="mt512e">
     </form>
-		<form method="POST" action="router.php">
+		<form method="POST" action="router.php?sensor=tc900">
         <input type="hidden" name="controller" value="tc900">
         <input type="submit" value="tc900">
     </form>
 	</div>
-	<div>
-		<a href="./panel.php"><button>Panel</button></a>
-	</div>
+
 	<p>ReportesSITRAD v1.0.0</p>
 </body>
 

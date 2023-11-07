@@ -11,8 +11,11 @@
 
 <body>
   <?php
+  $sensor = $_GET['sensor'];
+  echo $sensor;
+
 	// Conecta a la base de datos sensores
-	$dbSensores = new SQLite3('../basesDestino/dbSensores.db');
+	$dbSensores = new SQLite3('./basesDestino/dbSensores.db');
 
   $createTableQuery = "
     CREATE TABLE IF NOT EXISTS sensores (
@@ -27,7 +30,7 @@
   $dbSensores->exec($createTableQuery);
 
   /* ############################### OBTENER EL ULTIMO ARCHIVO MODIFICADO ############################### */
-  $path = "../basesOrigen";
+  $path = "./basesOrigen";
   $dir = opendir($path);
 
   while ($file = readdir($dir)) {
