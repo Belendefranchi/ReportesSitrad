@@ -21,13 +21,9 @@
         <input type="hidden" name="controller" value="instrumentos">
         <input type="submit" value="Instrumentos">
     </form>
-		<form method="POST" action="router.php?sensor=mt512e">
-        <input type="hidden" name="controller" value="mt512e">
-        <input type="submit" value="mt512e">
-    </form>
-		<form method="POST" action="router.php?sensor=tc900">
-        <input type="hidden" name="controller" value="tc900">
-        <input type="submit" value="tc900">
+		<form method="POST" action="router.php">
+        <input type="hidden" name="controller" value="sensores">
+        <input type="submit" value="Sensores">
     </form>
 	</div>
 

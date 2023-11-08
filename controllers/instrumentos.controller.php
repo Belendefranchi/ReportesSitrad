@@ -18,7 +18,7 @@
             $this->open('./basesOrigen/datos89.db');
         }
     }
-    echo '<a href="./index.php"><button>Volver</button></a>';
+    echo '<input type="button" value="Volver" onClick="window.history.go(-1)">';
     echo '<h2>Tabla instrumentos</h2>';
     echo '<table width="80%">';
     echo '<tr>';

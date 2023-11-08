@@ -10,8 +10,8 @@
 <body>
   <?php
 
-  echo '<a href="./index.php"><button>Volver</button></a>';
-  echo '<h2>Tabla mt512e</h2>';
+  echo '<input type="button" value="Volver" onClick="window.history.go(-1)">';
+  echo '<h2>Sensores Disponibles</h2>';
 
   $dbSensores = new SQLite3('./basesDestino/dbSensores.db');
 
@@ -22,13 +22,11 @@
 
     echo '<table width="80%">';
     echo '<tr>';
-    echo '<td class="primera_fila">Id</td>';
-    echo '<td class="primera_fila">Modelo</td>';
-    echo '<td class="primera_fila">Sensor</td>';
-    echo '<td class="primera_fila">Nombre</td>';
+    echo '<td class="encabezado">Id</td>';
+    echo '<td class="encabezado">Modelo</td>';
+    echo '<td class="encabezado">Sensor</td>';
+    echo '<td class="encabezado">Nombre</td>';
     echo '</tr>';
-    // Conecta a la base de datos sensores
-    $dbSensores = new SQLite3('./basesDestino/dbSensores.db');
 
     $createTableQuery = "
       CREATE TABLE IF NOT EXISTS sensores (
@@ -61,65 +59,30 @@
       $i = 0;
       foreach ($files as $file => $timestamp) {
         if ($i < 1) {
-
           $dbOrigen = new SQLite3($path . "/" . $file);
-          $query="SELECT id, modelo, descricao FROM instrumentos";
-          $result = $dbOrigen->query($query);
-          while ($data=$result->fetchArray()){
-            $id = $data["id"];
-            $modelo = $data["modelo"];
-            $nombre = $data["descricao"];
-            if($modelo === 73){
-              $tipo = "mt512e";
-            } else {
-              $tipo = "tc900";
-            };
-
-            $queryInsert = "INSERT INTO sensores (id, modelo, tipo, nombre) VALUES (:id, :modelo, :tipo, :nombre)";
-
-            $stmt = $dbSensores->prepare($queryInsert);
-            $stmt->bindValue(':id', $id, SQLITE3_TEXT);
-            $stmt->bindValue(':modelo', $modelo, SQLITE3_FLOAT);
-            $stmt->bindValue(':tipo', $tipo, SQLITE3_TEXT);
-            $stmt->bindValue(':nombre', $nombre, SQLITE3_TEXT);
-            $stmt->execute();
-
-            echo '<tr>';
-            echo '<td>' . $data["id"] . '</td>';
-            echo '<td>' . $data["modelo"] . '</td>';
-            echo '<td>' . $tipo . '</td>';
-            echo '<td>' . $data["descricao"] . '</td>';
-            echo '</tr>';
-          };
-          $dbOrigen->close();
-          $i++;
-        }
-      };
-      echo '</table>';
-    } else {
-    echo 'No se encontraron archivos en el directorio.';
+          require ("./models/dbSenores.model.php");
+        };
+        $dbOrigen->close();
+        $i++;
+      }
     };
-
+    echo '</table>';
   } else {
 
     echo '<table width="80%">';
     echo '<tr>';
-    echo '<td class="primera_fila">Id</td>';
-    echo '<td class="primera_fila">Modelo</td>';
-    echo '<td class="primera_fila">Sensor</td>';
-    echo '<td class="primera_fila">Nombre</td>';
+    echo '<td class="encabezado">Id</td>';
+    echo '<td class="encabezado">Modelo</td>';
+    echo '<td class="encabezado">Tipo Sensor</td>';
+    echo '<td class="encabezado">Reporte habilitado</td>';
+    echo '<td class="encabezado">Nombre</td>';
     echo '</tr>';
 
     $query="SELECT id, modelo, tipo, nombre FROM sensores";
     $result = $dbSensores->query($query);
 
     while ($data=$result->fetchArray()){
-      echo '<tr>';
-      echo '<td>' . $data["id"] . '</td>';
-      echo '<td>' . $data["modelo"] . '</td>';
-      echo '<td>' . $data["tipo"] . '</td>';
-      echo '<td>' . $data["nombre"] . '</td>';
-      echo '</tr>';
+      include ("./views/dbSensores.view.php");
     };
     echo '</table>';
   }
