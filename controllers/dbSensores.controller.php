@@ -74,17 +74,19 @@
     echo '<td class="encabezado">Id</td>';
     echo '<td class="encabezado">Modelo</td>';
     echo '<td class="encabezado">Tipo Sensor</td>';
-    echo '<td class="encabezado">Reporte habilitado</td>';
+    echo '<td class="encabezado">Habilitar reporte</td>';
     echo '<td class="encabezado">Nombre</td>';
     echo '</tr>';
 
-    $query="SELECT id, modelo, tipo, nombre FROM sensores";
+    $query="SELECT id, modelo, tipo, nombre FROM sensores WHERE id in (4, 5, 6, 7, 8, 9, 35) ORDER BY nombre";
     $result = $dbSensores->query($query);
 
+    echo '<form method="post" action="">';
     while ($data=$result->fetchArray()){
       include ("./views/dbSensores.view.php");
     };
-    echo '</table>';
+    echo '<input type="submit" value="Aceptar">';
+    echo '</form>';
   }
 
   $dbSensores->close();

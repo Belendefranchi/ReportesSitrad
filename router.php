@@ -6,11 +6,15 @@ ini_set('precision', 15);
 
 //include("./controllers/users.controller.php");
 
-$controller = $_POST['controller'];
+// Obtiene la ruta desde la URL
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if ($controller === "instrumentos"){
-  require ("./controllers/instrumentos.controller.php");
-} else {
-  require ("./controllers/dbSensores.controller.php");
-}
-?>
+
+$rutas = [
+  '/login' => ['Login', 'login.php'],
+  '/panel' => ['Panel de control', './controllers/panel.controller.php'],
+  '/sensores' => ['Sensores', './controllers/dbSensores.controller.php'],
+  '/sensores/reportes' => ['Reportes', './controllers/reportes.controller.php'],
+];
+
+

@@ -17,11 +17,11 @@
 
 	<h1>Reportes SITRAD</h1>
 	<div>
-		<form method="POST" action="router.php">
+		<form method="GET" action="./router.php">
         <input type="hidden" name="controller" value="instrumentos">
         <input type="submit" value="Instrumentos">
     </form>
-		<form method="POST" action="router.php">
+		<form method="POST" action="/sensores">
         <input type="hidden" name="controller" value="sensores">
         <input type="submit" value="Sensores">
     </form>
