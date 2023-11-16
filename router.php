@@ -14,7 +14,7 @@ $rutas = [
   '/login' => ['Login', 'login.php'],
   '/panel' => ['Panel de control', './controllers/panel.controller.php'],
   '/sensores' => ['Sensores', './controllers/dbSensores.controller.php'],
-  '/sensores/reportes' => ['Reportes', './controllers/reportes.controller.php'],
+  '/reportes' => ['Reportes', './controllers/reportes.controller.php'],
 ];
 
 

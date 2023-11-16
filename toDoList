@@ -1,3 +1,7 @@
+#A0D39C Color primario
+#005F45 Color secundario
+#D7E1D6 color terciario
+
 USUARIOS => sistema de LOGIN
 
   USER: consulta de reportes, solo podrá ver los reportes de sensores habilitados. Cuando realice la consulta requerida, se deberán modificar los valores que presenten desvíos, según el rango de fechas y temperaturas indicado por el usuario administrador.

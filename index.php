@@ -12,7 +12,7 @@
 
 <body>
 	<?php
-		require ("./controllers/dbFechas.controller.php");
+		require ("sitrad/controllers/dbFechas.controller.php");
 	?>
 
 	<h1>Reportes SITRAD</h1>

@@ -6,6 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-  PAGE NOT FOUND
+  <p>PARAAAAAA</p>
+  <img src="./public/paraaaa.jpeg">
 </body>
 </html>

@@ -3,7 +3,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 set_time_limit(300);
 ini_set('precision', 15);
 
-$path = "./basesOrigen";
+$path = "sitrad/basesOrigen";
 $dir = opendir($path);
 
 // Obtén todos los archivos en la ruta
@@ -17,7 +17,7 @@ closedir($dir);
 
 if (!empty($files)) {
 	// Conecta a la base de datos de destino
-	$dbFechas = new SQLite3('basesDestino/dbFechas.db');
+	$dbFechas = new SQLite3('sitrad/basesDestino/dbFechas.db');
 
 	// Consulta para verificar la existencia de la tabla 'data'
 	$tableExistsQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='data'";
