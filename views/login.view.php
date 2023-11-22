@@ -5,9 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Iniciar Sesión</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-	<!-- <script src="js/jquery-1.12.4-jquery.min.js"></script> -->
+  <link rel="stylesheet" href="/sitrad/node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body class="text-center" style="background-color:#D7E1D6">
 
@@ -66,17 +64,8 @@
         $db_username = $row["username"];
         $db_password = $row["password"];
         $db_role = $row["role"];
-      }
-
-      if($db_username !== null && $db_password !== null){
-        if($username == $db_username){
-          if (password_verify($password, $db_password)) {
-            echo $db_role;
-          } else {
-            echo "no coinciden";
-          }
-        } else {
-          echo "El usuario no existe";
+        if($username == $db_username && $password == $db_password){
+          return $db_role;
         }
       }
     } catch (Exception $e) {
@@ -106,7 +95,7 @@
     createDatabaseTable($dbUsers);
 
     if (empty($username) && empty($password)) {
-      $errorMsg = "Por favor ingrese el nombre de usuario y la contraseña";
+      $errorMsg = "Por favor ingrese el usuario y la contraseña";
     } elseif (empty($username)) {
       $errorMsg = "Por favor ingrese el usuario";
     } elseif (empty($password)) {
@@ -114,26 +103,24 @@
     } elseif ($username && $password) {
       $role = loginUser($dbUsers, $username, $password);
 
-      if ($role !== false) {
+      if ($role) {
         switch ($role) {
           case "admin":
             $_SESSION["admin_login"] = $username;
-            $loginMsg = "Admin: Inició sesión con éxito";
             redirectToDashboard($role);
             break;
 
           case "user":
             $_SESSION["user_login"] = $username;
-            $loginMsg = "¡Inició sesión con éxito!";
             redirectToDashboard($role);
             break;
 
           default:
+            $errorMsg = "1 (no hay rol): Usuario o contraseña incorrectos";
             echo $role;
-            $errorMsg = "1: Usuario o contraseña incorrectos";
         }
       } else {
-          $errorMsg = "2: Usuario o contraseña incorrectos";
+        $errorMsg = "2: Usuario o contraseña incorrectos";
       }
     }
   }
@@ -142,45 +129,31 @@
   <header style="background-color:white">
     <img class="img-fluid" src="public/portada.jpg" alt="portada">
   </header>
-  <main class="d-flex flex-column align-items-center m-5">
-    <div class="col-sm-8">
+  <main class="d-flex flex-column align-items-center m-3">
+    <div class="col-sm-6">
       <?php
       if (isset($errorMsg)) {
       ?>
-      <div class="alert alert-danger">
+      <div class="alert alert-success p-2">
         <strong><?php echo $errorMsg; ?></strong>
       </div>
       <?php
       }
-      if (isset($loginMsg)) {
-      ?>
-      <div class="alert alert-success">
-        <strong>ÉXITO ! <?php echo $loginMsg; ?></strong>
-      </div>
-      <?php
-      }
       ?>
     </div>
-    <div class="col-sm-8">
-      <h2>Iniciar sesión</h2>
+    <div class="col-sm-6">
+      <h2 class="m-3">Iniciar sesión</h2>
       <form method="post" action="">
         <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" name="txt_username" class="form-control m-1" placeholder="Ingrese usuario">
-          </div>
+          <input type="text" name="txt_username" class="form-control m-1" placeholder="Ingrese usuario">
         </div>
         <div class="form-group">
-          <div class="col-sm-12">
-            <input type="password" name="txt_password" class="form-control m-1" placeholder="Ingrese contraseña">
-          </div>
+          <input type="password" name="txt_password" class="form-control m-1" placeholder="Ingrese contraseña">
         </div>
         <div class="form-group">
-          <div class="col-sm-12">
-            <input type="submit" class="btn btn-success m-3" value="Ingresar"></input>
-          </div>
+          <input type="submit" class="btn btn-success m-3" value="Ingresar">
         </div>
       </form>
-    </div>
     </div>
   </main>
   <footer>
@@ -191,6 +164,6 @@
       </a>
     </div>
   </footer>
+  <script src="/sitrad/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
-
 </html>
