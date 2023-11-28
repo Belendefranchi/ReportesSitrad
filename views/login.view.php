@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-	<title>Iniciar Sesión</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+  <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="/sitrad/node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
+
 <body class="text-center" style="background-color:#D7E1D6">
 
   <?php
 
   session_start();
 
-/* ########################################## FUNCIONES ########################################## */
+  require ("../controllers/login.controller.php");
+  /* ########################################## FUNCIONES ########################################## */
 
-  function redirectToDashboard($role) {
+/*   function redirectToDashboard($role)
+  {
     switch ($role) {
-        case "admin":
-            header("Location: /sitrad/panel/");
-            exit();
-        case "user":
-            header("Location: /sitrad/reportes/");
-            exit();
-        default:
-            die("Rol no reconocido");
+      case "admin":
+        header("Location: /sitrad/panel/");
+        exit();
+      case "user":
+        header("Location: /sitrad/reportes/");
+        exit();
+      default:
+        die("Rol no reconocido");
     }
   }
 
-  function createDatabaseTable($dbUsers) {
+  function createDatabaseTable($dbUsers)
+  {
     $tableExistsQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='data'";
     $tableExistsResult = $dbUsers->querySingle($tableExistsQuery);
 
@@ -42,18 +47,19 @@
       ";
 
       try {
-          $result = $dbUsers->exec($createTableQuery);
+        $result = $dbUsers->exec($createTableQuery);
 
-          if ($result === false) {
-              throw new Exception("Error al crear la tabla: " . $dbUsers->lastErrorMsg());
-          }
+        if ($result === false) {
+          throw new Exception("Error al crear la tabla: " . $dbUsers->lastErrorMsg());
+        }
       } catch (Exception $e) {
-          die("Error: " . $e->getMessage());
+        die("Error: " . $e->getMessage());
       }
     }
   }
 
-  function loginUser($dbUsers, $username, $password) {
+  function loginUser($dbUsers, $username, $password)
+  {
     try {
       $query = "SELECT username, password, role FROM data WHERE username=:f_username";
       $stmt = $dbUsers->prepare($query);
@@ -64,21 +70,21 @@
         $db_username = $row["username"];
         $db_password = $row["password"];
         $db_role = $row["role"];
-        if($username == $db_username && $password == $db_password){
+        if ($username == $db_username && $password == $db_password) {
           return $db_role;
         }
       }
     } catch (Exception $e) {
       echo "Error: " . $e->getMessage();
     }
-    }
+  } */
 
 
   /* ############################################################################################ */
 
   if (isset($_SESSION['user'])) {
     if ($_SESSION["role"] == "admin" || $_SESSION["role"] == "user") {
-        redirectToDashboard($_SESSION["role"]);
+      redirectToDashboard($_SESSION["role"]);
     }
   }
 
@@ -134,16 +140,16 @@
       <?php
       if (isset($errorMsg)) {
       ?>
-      <div class="alert alert-success p-2">
-        <strong><?php echo $errorMsg; ?></strong>
-      </div>
+        <div class="alert alert-success p-2">
+          <strong><?php echo $errorMsg; ?></strong>
+        </div>
       <?php
       }
       ?>
     </div>
     <div class="col-sm-6">
       <h2 class="m-3">Iniciar sesión</h2>
-      <form method="post" action="">
+      <form method="post" action="../controllers/login.controller.php">
         <div class="form-group">
           <input type="text" name="txt_username" class="form-control m-1" placeholder="Ingrese usuario">
         </div>
@@ -166,4 +172,5 @@
   </footer>
   <script src="/sitrad/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
