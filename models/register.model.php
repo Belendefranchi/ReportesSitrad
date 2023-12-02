@@ -33,7 +33,6 @@ function checkUser($dbUsers, $username, $hashedPassword, $role){
     if ($row['count'] == 0) {
 			// El usuario no existe en la base de datos, realiza inserción
       registerUser($dbUsers, $username, $hashedPassword, $role);
-      $dbUsers->close();
       header("refresh:4; /sitrad");
       return "Usuario creado correctamente, por favor aguarde unos instantes e inicie sesión";
 		}
