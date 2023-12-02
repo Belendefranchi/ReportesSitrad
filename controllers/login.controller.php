@@ -1,29 +1,14 @@
 <?php
 
 session_start();
-
+require "sitrad/controllers/redirect.controller.php";
 require "sitrad/models/login.model.php";
 
-function redirectToDashboard($role){
-  switch ($role) {
-    case "admin":
-      header("Location: /sitrad/panel/");
-      exit();
-    case "user":
-      header("Location: /sitrad/reportes/");
-      exit();
-    default:
-      die("Rol no reconocido");
-  }
-}
-
-if (isset($_SESSION["admin_login"]) || isset($_SESSION["user_login"])) {
-  redirectToDashboard($_SESSION["role"]);
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $username = $_POST["txt_username"];
-  $password = $_POST["txt_password"];
+  $username = SQLite3::escapeString($_POST["txt_username"]);
+  $password = SQLite3::escapeString($_POST["txt_password"]);
+
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
   if (isset($dbUsers)) {
     $dbUsers->close();
@@ -31,14 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $dbUsers = new SQLite3('sitrad/basesDestino/dbUsers.db');
 
-  createDatabaseTable($dbUsers);
+  if (!$dbUsers) {
+    die("Error al abrir la base de datos: " . $dbUsers->lastErrorMsg());
+  }
 
   if (empty($username) && empty($password)) {
-    $errorMsg = "Por favor ingrese el usuario y la contraseña";
+    $message = "Por favor ingrese el usuario y la contraseña";
   } elseif (empty($username)) {
-    $errorMsg = "Por favor ingrese el usuario";
+    $message = "Por favor ingrese el usuario";
   } elseif (empty($password)) {
-    $errorMsg = "Por favor ingrese la contraseña";
+    $message = "Por favor ingrese la contraseña";
   } elseif ($username && $password) {
     $role = loginUser($dbUsers, $username, $password);
 
@@ -57,11 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           break;
 
         default:
-          $errorMsg = "1 (no hay rol): Usuario o contraseña incorrectos";
-          echo $role;
+          $message = "Rol incorrecto";
       }
     } else {
-      $errorMsg = "2: Usuario o contraseña incorrectos";
+      $message = "Usuario o contraseña incorrectos";
     }
   }
 }

@@ -15,10 +15,6 @@
 
   require "sitrad/controllers/login.controller.php";
 
-  if (isset($_SESSION["admin_login"]) || isset($_SESSION["user_login"])) {
-    redirectToDashboard($_SESSION["role"]);
-  }
-
   ?>
 
   <header style="background-color:white">
@@ -26,15 +22,19 @@
   </header>
   <main class="d-flex flex-column align-items-center m-3">
     <div class="col-sm-6">
+
       <?php
-      if (isset($errorMsg)) {
+      if (isset($message)) {
       ?>
-        <div class="alert alert-success p-2">
-          <strong><?php echo $errorMsg; ?></strong>
-        </div>
+
+      <div class="alert alert-success p-2">
+        <strong><?php echo $message; ?></strong>
+      </div>
+
       <?php
       }
       ?>
+
     </div>
     <div class="col-sm-6">
       <h2 class="m-3">Iniciar sesión</h2>
@@ -61,5 +61,4 @@
   </footer>
   <script src="/sitrad/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
-
 </html>
