@@ -7,6 +7,7 @@
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="/sitrad/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="icon" href="/sitrad/public/favicon.ico" type="image/x-icon">
 </head>
 
 <body class="text-center" style="background-color:#D7E1D6">
