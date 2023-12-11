@@ -6,7 +6,7 @@ function redirectToDashboard($role){
       header("Location: /sitrad/panel/");
       exit();
     case "user":
-      header("Location: /sitrad/reportes/");
+      header("Location: /sitrad/panel/");
       exit();
     default:
       die("Rol no reconocido");

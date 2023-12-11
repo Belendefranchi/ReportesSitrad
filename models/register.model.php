@@ -1,8 +1,10 @@
 <?php
 
 function createDatabaseTable($dbUsers){
+
   $tableExistsQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='data'";
   $tableExistsResult = $dbUsers->querySingle($tableExistsQuery);
+
   if (!$tableExistsResult) {
     $createTableQuery = "
         CREATE TABLE IF NOT EXISTS data (
@@ -11,6 +13,7 @@ function createDatabaseTable($dbUsers){
           role TEXT
         )
       ";
+
     try {
       $result = $dbUsers->exec($createTableQuery);
       $dbUsers->close();
