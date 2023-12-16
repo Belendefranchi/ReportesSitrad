@@ -1,19 +1,17 @@
 <?php
 
-session_start();
-require "sitrad/controllers/redirect.controller.php";
 require "sitrad/models/panel.model.php";
 
-$dbSensores = new SQLite3('./basesDestino/dbSensores.db');
+$dbSensores = new SQLite3('sitrad/basesDestino/dbSensores.db');
 
-if (!$dbSensores) {
+/* if (!$dbSensores) {
   die("Error al abrir la base de datos: " . $dbSensores->lastErrorMsg());
 }
 
-createDatabaseTable($dbSensores);
+createDatabaseTable($dbSensores); */
 
 /* ############################### OBTENER EL ULTIMO ARCHIVO MODIFICADO ############################### */
-$path = "./basesOrigen";
+$path = "sitrad/basesOrigen";
 $dir = opendir($path);
 
 while ($file = readdir($dir)) {

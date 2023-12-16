@@ -13,20 +13,24 @@
 
   <a href="/sitrad/logout">Salir</a>
   <h2>Sensores Disponibles</h2>
-
-  <?php
-
-  require "sitrad/controllers/panel.controller.php";
-
-  echo '<tr>';
-  echo '<td><input type="text" value=' . $data["id"] . '></td>';
-  echo '<td><input type="text" value=' . $data["modelo"] . '></td>';
-  echo '<td><input type="text" value=' . $data["tipo"] . '></td>';
-  echo '<td><input type="checkbox"></td>';
-  echo '<td><a href="./controllers/reportes.controller.php?sensorId=' . $data["id"] . '&sensorTipo=' . $data["tipo"] . '">' . $data["nombre"] . '</a></td>';
-  echo '</tr>';
-
-  ?>
+  <table width="80%">
+    <tr>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Id</option>
+      
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+      <td class="encabezado"><input type="text">Id</td>
+      <td class="encabezado"><input type="text">Modelo</td>
+      <td class="encabezado"><input type="text">Sensor</td>
+      <td class="encabezado"><input type="text">Nombre</td>
+    </tr>
+    <?php
+    require "sitrad/controllers/panel.controller.php";
+    ?>
+  </table>
 
   <script src="/sitrad/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
