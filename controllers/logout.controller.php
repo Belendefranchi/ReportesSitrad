@@ -3,6 +3,7 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header("Location: /sitrad/");
+header("Location: /sitrad");
+exit();
 
 ?>

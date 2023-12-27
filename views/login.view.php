@@ -10,13 +10,9 @@
 </head>
 
 <body class="text-center" style="background-color:#D7E1D6">
-
   <?php
-
   require "sitrad/controllers/login.controller.php";
-
   ?>
-
   <header style="background-color:white">
     <img class="img-fluid" src="public/portada.jpg" alt="portada">
   </header>
@@ -24,6 +20,7 @@
     <div class="col-sm-6">
 
       <?php
+
       if (isset($message)) {
       ?>
 

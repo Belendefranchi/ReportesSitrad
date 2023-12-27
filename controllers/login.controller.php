@@ -1,7 +1,16 @@
 <?php
 
 session_start();
-require "sitrad/controllers/redirect.controller.php";
+
+if (isset($_SESSION['role'])) {
+  if ($role == "admin"){
+    header("Location: /sitrad/panel/");
+  }else{
+    header("Location: /sitrad/reports/");
+  }
+  exit();
+}
+
 require "sitrad/models/login.model.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -30,21 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = loginUser($dbUsers, $username, $password);
 
     if ($role) {
-      switch ($role) {
-        case "admin":
-          $_SESSION["admin_login"] = $username;
-          $_SESSION["role"] = $role;
-          redirectToDashboard($role);
-          break;
-
-        case "user":
-          $_SESSION["user_login"] = $username;
-          $_SESSION["role"] = $role;
-          redirectToDashboard($role);
-          break;
-
-        default:
-          $message = "Rol incorrecto";
+      if ($role === "admin"){
+        echo "admin: " . $role;
+        header("Location: /sitrad/panel");
+        exit();
+      }else{
+        echo "else: " . $role;
+        header("Location: /sitrad/reports");
+        exit();
       }
     } else {
       $message = "Usuario o contraseña incorrectos";

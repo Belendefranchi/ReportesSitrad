@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 require "sitrad/controllers/redirect.controller.php";
 require "sitrad/models/register.model.php";
 

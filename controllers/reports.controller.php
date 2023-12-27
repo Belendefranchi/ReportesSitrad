@@ -1,15 +1,16 @@
 <?php
-  $sensorId = $_GET['sensorId'];
-  $sensorTipo = $_GET['sensorTipo'];
 
-  echo '<input type="button" value="Volver" onClick="window.history.go(-1)">';
-  echo '<h2>Reporte '.$sensorId.'</h2>';
-  echo "Id: $sensorId, Tipo: $sensorTipo";
+$sensorId = $_GET['sensorId'];
+$sensorTipo = $_GET['sensorTipo'];
 
-  if ($tipo === "mt512e"){
+echo '<input type="button" value="Volver" onClick="window.history.go(-1)">';
+echo '<h2>Reporte '.$sensorId.'</h2>';
+echo "Id: $sensorId, Tipo: $sensorTipo";
 
-  } else {
-    
-  }
+if ($tipo === "mt512e"){
+
+} else {
+
+}
 
 ?>
