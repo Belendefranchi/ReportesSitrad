@@ -32,7 +32,20 @@ if (!isset($_SESSION['role'])) {
 
     <h2>Administración de Usuarios</h2>
     <p>Tabla editable, haga click en el valor a editar y luego de modificarlo haga click en un lugar vacío.</p>
-
+    <div class="">
+      <table class="table table-striped table-hover">
+        <tr class="table-dark">
+          <td>Nro.</td>
+          <td>Nombre</td>
+          <td>Mail</td>
+          <td>Contraseña</td>
+          <td>Rol</td>
+        </tr>
+        <?php
+        require "sitrad/controllers/users.controller.php";
+        ?>
+      </table>
+    </div>
   </main>
   <footer>
 

@@ -99,14 +99,14 @@ function querySensores($dbSensores){
     echo '<td>'.$tipo.'</td>';
     echo '<td><a href="./reportes.controller.php?sensorId='.$id.'">'.$nombre.'</td>';
     if($checked === "true"){
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'" checked>';
     }else{
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'">';
     };
     if($visible === "true"){
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'" checked>';
     }else{
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'">';
     };
     echo '</tr>';
   };

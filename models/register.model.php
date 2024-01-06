@@ -1,29 +1,9 @@
 <?php
 
-function createDatabaseTable($dbUsers){
+$dbUsers = new SQLite3('sitrad/basesDestino/dbUsers.db');
 
-  $tableExistsQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='data'";
-  $tableExistsResult = $dbUsers->querySingle($tableExistsQuery);
-
-  if (!$tableExistsResult) {
-    $createTableQuery = "
-        CREATE TABLE IF NOT EXISTS data (
-          username TEXT,
-          password TEXT,
-          role TEXT
-        )
-      ";
-
-    try {
-      $result = $dbUsers->exec($createTableQuery);
-      $dbUsers->close();
-      if ($result === false) {
-        throw new Exception("Error al crear la tabla: " . $dbUsers->lastErrorMsg());
-      }
-    } catch (Exception $e) {
-      die("Error: " . $e->getMessage());
-    }
-  }
+if (!$dbUsers) {
+  die("Error al abrir la base de datos: " . $dbUsers->lastErrorMsg());
 }
 
 function checkUser($dbUsers, $username, $hashedPassword, $role){
