@@ -4,11 +4,11 @@ require "sitrad/models/panel.model.php";
 
 $dbSensores = new SQLite3('sitrad/basesDestino/dbSensores.db');
 
-/* if (!$dbSensores) {
+if (!$dbSensores) {
   die("Error al abrir la base de datos: " . $dbSensores->lastErrorMsg());
 }
 
-createDatabaseTable($dbSensores); */
+createDatabaseTable($dbSensores);
 
 /* ############################### OBTENER EL ULTIMO ARCHIVO MODIFICADO ############################### */
 $path = "sitrad/basesOrigen";
@@ -31,8 +31,10 @@ if (!empty($files)) {
     if ($i < 1) {
       $dbOrigen = new SQLite3($path . "/" . $file);
       checkSensores($dbOrigen, $dbSensores);
+      querySensores($dbSensores);
     };
     $dbOrigen->close();
+    $dbSensores->close();
     $i++;
   }
 };

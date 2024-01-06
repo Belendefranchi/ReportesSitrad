@@ -17,7 +17,6 @@ if (!isset($_SESSION['role'])) {
   <link rel="stylesheet" href="/sitrad/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="icon" href="/sitrad/public/favicon.ico" type="image/x-icon">
 </head>
-
 <body class="text-center" style="background-color:#D7E1D6">
   <header class="d-flex m-3">
     <div class="col-sm-6 text-start">
@@ -25,28 +24,15 @@ if (!isset($_SESSION['role'])) {
       <p><?php echo "Nombre de usuario: " . $_SESSION['username']?></p>
     </div>
     <div class="d-flex flex-column col-sm-6 text-end">
-      <a href="/sitrad/users">Administrar usuarios</a>
+      <a href="/sitrad/panel">Administrar sensores</a>
       <a href="/sitrad/logout">Cerrar sesión</a>
     </div>
   </header>
   <main class="d-flex flex-column align-items-center m-3">
-    <h2>Sensores Disponibles</h2>
-    <div class="">
-      <table class="table table-striped table-hover">
-        <tr class="table-dark">
-          <td>Nro.</td>
-          <td>Id</td>
-          <td>Modelo</td>
-          <td>Sensor</td>
-          <td>Nombre</td>
-          <td>Modificar</td>
-          <td>Visible</td>
-        </tr>
-        <?php
-        require "sitrad/controllers/panel.controller.php";
-        ?>
-      </table>
-    </div>
+
+    <h2>Administración de Usuarios</h2>
+    <p>Tabla editable, haga click en el valor a editar y luego de modificarlo haga click en un lugar vacío.</p>
+
   </main>
   <footer>
 
