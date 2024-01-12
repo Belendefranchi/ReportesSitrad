@@ -93,7 +93,7 @@ function querySensores($dbSensores){
     $visible = $data["visible"];
 
     echo '<tr>';
-    echo '<td>'.$idx.'</td>';
+    echo '<td class="fw-bold">'.$idx.'</td>';
     echo '<td>'.$id.'</td>';
     echo '<td>'.$modelo.'</td>';
     echo '<td>'.$tipo.'</td>';

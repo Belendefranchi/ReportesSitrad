@@ -1,7 +1,8 @@
 <?php
 
-$dbUsers = new SQLite3('sitrad/basesDestino/dbUsers.db');
+require "sitrad/configs/config.php";
 
+$dbUsers = new SQLite3($pathDestino.'/dbUsers.db');
 if (!$dbUsers) {
   die("Error al abrir la base de datos: " . $dbUsers->lastErrorMsg());
 }
@@ -44,18 +45,18 @@ function loginUser($dbUsers, $username, $password){
       $db_username = $row["username"];
       $db_password_hash = $row["password"];
       $db_role = $row["role"];
-    }
-    if($db_role){
       if ($username == $db_username && $password == password_verify($password, $db_password_hash)) {
         $_SESSION["username"] = $db_username;
         $_SESSION["role"] = $db_role;
         $dbUsers->close();
       }
+      return $db_role;
     }
-    return $db_role;
   } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
   }
 }
 
 ?>
+
+

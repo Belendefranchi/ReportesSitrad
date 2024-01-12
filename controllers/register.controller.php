@@ -12,12 +12,11 @@ if (isset($_SESSION['role'])) {
 }
 
 require "sitrad/models/register.model.php";
-createDatabaseTable($dbUsers);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $username = SQLite3::escapeString($_POST["txt_username"]);
   $password = SQLite3::escapeString($_POST["txt_password"]);
-  $role	= "user";
+  $role	= "admin";
 
   if (empty($username) && empty($password)) {
     $message = "Por favor ingrese el usuario y la contraseña";

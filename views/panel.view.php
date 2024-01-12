@@ -33,7 +33,7 @@ if (!isset($_SESSION['role'])) {
     <h2>Sensores Disponibles</h2>
     <div class="">
       <table class="table table-striped table-hover">
-        <tr class="table-dark">
+        <tr class="table-dark fw-bold">
           <td>Nro.</td>
           <td>Id</td>
           <td>Modelo</td>
