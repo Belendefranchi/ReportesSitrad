@@ -80,7 +80,7 @@ function insertSensor($dbSensores, $id, $modelo, $nombre, $tipo, $checked, $visi
 
 function querySensores($dbSensores){
 
-  $query="SELECT idx, id, modelo, tipo, nombre, checked, visible FROM sensores";
+  $query = "SELECT idx, id, modelo, tipo, nombre, checked, visible FROM sensores";
   $result = $dbSensores->query($query);
 
   while ($data=$result->fetchArray()){
@@ -88,7 +88,7 @@ function querySensores($dbSensores){
     $id = $data["id"];
     $modelo = $data["modelo"];
     $tipo = $data["tipo"];
-    $nombre = $data["nombre"];
+    $nombre = preg_replace('/[\º]+/', 'º ',$data["nombre"]);
     $checked = $data["checked"];
     $visible = $data["visible"];
 
