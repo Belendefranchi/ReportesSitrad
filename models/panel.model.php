@@ -82,8 +82,26 @@ function querySensores($dbSensores){
 
   $query = "SELECT idx, id, modelo, tipo, nombre, checked, visible FROM sensores";
   $result = $dbSensores->query($query);
-
-  while ($data=$result->fetchArray()){
+  
+  echo '<tr class="table-dark text-light">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <select class="form-select form-select-sm bg-transparent fw-bold text-light" id="nro">
+              <option class="text-dark text-center" selected>Nombre</option>';
+              while ($data=$result->fetchArray()){
+                $nombre = preg_replace('/[\º]+/', 'º ',$data["nombre"]);
+                echo '<option class="text-dark">'.$nombre.'</option>';
+              }
+  echo      '</select>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>';
+  
+    while ($data=$result->fetchArray()){
     $idx = $data["idx"];
     $id = $data["id"];
     $modelo = $data["modelo"];
@@ -99,17 +117,17 @@ function querySensores($dbSensores){
     echo '<td>'.$tipo.'</td>';
     echo '<td><a href="./reportes.controller.php?sensorId='.$id.'">'.$nombre.'</td>';
     if($checked === "true"){
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'" checked>';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'" checked></td>';
     }else{
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'">';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="c'.$id.'"></td>';
     };
     if($visible === "true"){
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'" checked>';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'" checked></td>';
     }else{
-      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'">';
+      echo '<td><input class="form-check-input" type="checkbox" value="" id="v'.$id.'"></td>';
     };
     echo '</tr>';
-  };
+  }
 }
 
 ?>

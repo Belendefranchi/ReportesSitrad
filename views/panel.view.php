@@ -33,8 +33,17 @@ if (!isset($_SESSION['role'])) {
     <h2>Sensores Disponibles</h2>
     <div class="">
       <table class="table table-striped table-hover">
-        <tr class="table-dark fw-bold">
-          <td>Nro.</td>
+        <tr class="table-dark text-light">
+          <td class="">
+            <select class="form-select form-select-sm bg-transparent fw-bold text-light" id="nro">
+              <option class="text-dark" selected>Nro.</option>
+              <?php
+
+                echo '<option class="text-dark" value="1">One</option>';
+                echo '<option class="text-dark" value="1">One</option>';
+              ?>
+            </select>
+          </td>
           <td>Id</td>
           <td>Modelo</td>
           <td>Sensor</td>

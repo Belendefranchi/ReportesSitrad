@@ -10,6 +10,9 @@ USUARIOS => sistema de LOGIN
 
 PANEL DE CONTROL => para usuario ADMIN
 
+  -Hacer filtros en los nombres de las columnas para los sensores
+  -Hacer queries de UPDATE para modificar los estados de los checkbox en la tabla
+  -Hacer función para guardar los ajustes
 
 
 TABLAS => otras a parte de las datosXX.db
