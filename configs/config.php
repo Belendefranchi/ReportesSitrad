@@ -1,6 +1,6 @@
 <?php
 
-$pathOrigen = "sitrad/basesOrigen/";
-$pathDestino = "sitrad/basesDestino/";
+$pathOrigen = "basesOrigen/";
+$pathDestino = "basesDestino/";
 
 ?>

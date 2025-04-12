@@ -3,7 +3,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 set_time_limit(300);
 ini_set('precision', 15);
 
-require "sitrad/configs/config.php";
+require "configs/config.php";
 
 $dir = opendir($pathOrigen);
 

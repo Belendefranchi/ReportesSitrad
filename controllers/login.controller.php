@@ -11,7 +11,7 @@ if (isset($_SESSION['role'])) {
   exit();
 }
 
-require "sitrad/models/login.model.php";
+require "../models/login.model.php";
 createDatabaseTable($dbUsers);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

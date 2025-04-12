@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Reportes SITRAD</title>
-	<!-- <link rel="stylesheet" type="text/css" href="hoja2.css"> -->
+	<link rel="stylesheet" type="text/css" href="hoja2.css">
 	<link rel="icon" href="favicon.ico">
 
 
@@ -12,7 +12,7 @@
 
 <body>
 	<?php
-		require ("sitrad/controllers/dbFechas.controller.php");
+		require ("controllers/dbFechas.controller.php");
 	?>
 
 	<h1>Reportes SITRAD</h1>

@@ -1,8 +1,8 @@
 <?php
 
-require "sitrad/configs/config.php";
+require "../configs/config.php";
 
-$dbUsers = new SQLite3($pathDestino.'/dbUsers.db');
+$dbUsers = new SQLite3('../basesDestino/dbUsers.db');
 if (!$dbUsers) {
   die("Error al abrir la base de datos: " . $dbUsers->lastErrorMsg());
 }
